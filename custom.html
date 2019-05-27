@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ninna York Forside</title>
+    <style>
+        /*        BACKGROUND*/
+
+        #backgroundpic img {
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -999;
+        }
+
+        /*        BACKGROUND END*/
+
+        /*        MENU*/
+        .mainmenu .navmenu {
+            position: fixed;
+            right: 5%;
+            top: 20%;
+            text-align: right;
+        }
+
+        .mainmenu .navmenu a {
+            text-decoration: none;
+            color: black;
+            line-height: 50px;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /*        MENU END*/
+
+        /*        FEEDGRID*/
+        .feedcontainer {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 1vw;
+            padding: 90vh 13vw 0;
+        }
+
+        .feedpic img {
+            width: 100%;
+        }
+
+        /*        FEEDGRID END*/
+    </style>
+</head>
+
+<body>
+    <header class="mainmenu">
+        <div class="burgermenu">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+        </div>
+
+        <div class="navmenu hidden">
+            <nav>
+                <ul>
+                    <li><a href="custom.html">Custom</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="showpieces.html">Showpieces</a></li>
+                </ul>
+            </nav>
+        </div>
+
+    </header>
+
+
+    <div id="backgroundpic">
+        <picture>
+            <source media="(min-width: 630px)" srcset="billeder/backgroundpicture.png">
+            <img src="" alt="default">
+        </picture>
+    </div>
+
+
+    <div class="feedcontainer"></div>
+
+
+    <template>
+        <article class="feedpic">
+            <a href="#"><img src="" alt=""></a>
+        </article>
+    </template>
+
+
+</body>
+
+<script>
+    let feed = [];
+
+    document.addEventListener("DOMContentLoaded", start);
+
+    function start() {
+        getJson();
+    }
+
+    async function getJson() {
+        let url =
+            "http://phin.dk/2semeksamen/wordpress/wp-json/wp/v2/feed?per_page=10"
+        let jsonData = await fetch(url);
+        feed = await jsonData.json();
+        visFeed();
+    }
+
+    function visFeed() {
+        let dest = document.querySelector(".feedcontainer");
+        let temp = document.querySelector("template");
+        feed.forEach(onepost => {
+            let klon = temp.cloneNode(true).content;
+            klon.querySelector("img").src = onepost.billede.guid;
+            dest.appendChild(klon);
+        });
+    }
+</script>
+
+</html>

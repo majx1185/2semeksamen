@@ -91,10 +91,10 @@
 
         /*FEEDGRID*/
         .feedcontainer {
-            column-count: 4;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 1.5vw;
             padding: 50% 15vw 0;
-            /*            column-gap: 0;*/
-            /*der er en automatisk gap på. Hvis man fjerner udkommenteringen på denne, vil der ikke være gaps.*/
         }
 
         .feedcontainer img {
@@ -107,18 +107,18 @@
         /*MEDIA QUERIES*/
         @media (max-width: 840px) {
             .feedcontainer {
-                column-count: 2;
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
         @media (max-width: 699px) {
             .feedcontainer {
-                padding: 127vw 10vw 0;
+                padding: 190% 10vw 0;
             }
 
             #bigjewl img {
                 width: 110%;
-                top: 150px;
+                top: 240px;
                 left: -10%;
             }
 
@@ -158,7 +158,6 @@
         }
 
         /*MEDIA QUERIES END*/
-
     </style>
 </head>
 
@@ -198,14 +197,20 @@
     </div>
 
 
-    <div class="feedcontainer"></div>
+    <div class="feedcontainer">
+        <div class="column1"></div>
+        <div class="column2"></div>
+        <div class="column3"></div>
+        <div class="column4"></div>
+    </div>
 
 
     <template>
-
+        <!--
         <article class="feedpic">
             <a href="#"><img src="" alt=""></a>
         </article>
+-->
 
     </template>
 
@@ -233,15 +238,43 @@
 
     function visFeed() {
         let temp = document.querySelector("template");
-        let dest = document.querySelector(".feedcontainer")
+        let prkolonne = parseInt(feed.length / 4); /*opdeler antallet af billeder ligeligt på de fire kolonner*/
+        let rest = feed.length % 4; /*når der er et ulige antal billeder, vil den tage de restende billeder og fordele dem, som man siger til den nede i if sætningerne*/
+        console.log(rest);
 
+        console.log(prkolonne);
+        let nummer = 0; /*start antallet af billeder*/
+        let restbillede = 0; /*start antallet af resterende billeder*/
         feed.forEach(onepost => {
             console.log(onepost);
+            if (nummer < (prkolonne)) { /*deler billederne ligeligt i kolonnerne*/
+                document.querySelector(".feedcontainer .column1").innerHTML += "<a href=' eachpic.html?slug=" + onepost.slug + "'><img src='" + onepost.billede.guid + " '></a><br>";
+            } else if (nummer < 2 * prkolonne) { /*deler billederne ligeligt i kolonnerne*/
+                document.querySelector(".feedcontainer .column2").innerHTML += "<a href=' eachpic.html?slug=" + onepost.slug + "'><img src='" + onepost.billede.guid + " '></a><br>";
+            } else if (nummer < 3 * prkolonne) { /*deler billederne ligeligt i kolonnerne*/
+                document.querySelector(".feedcontainer .column3").innerHTML += "<a href=' eachpic.html?slug=" + onepost.slug + "'><img src='" + onepost.billede.guid + " '></a><br>";
+            } else if (nummer < 4 * prkolonne) { /*deler billederne ligeligt i kolonnerne*/
+                document.querySelector(".feedcontainer .column4").innerHTML += "<a href=' eachpic.html?slug=" + onepost.slug + "'><img src='" + onepost.billede.guid + " '></a><br>";
+            }
 
-            let klon = temp.cloneNode(true).content;
-            klon.querySelector("img").src = onepost.billede.guid;
-            klon.querySelector("a").href = "eachpic.html?slug=" + onepost.slug;
-            dest.appendChild(klon);
+            if (nummer > ((4 * prkolonne) - 1)) { /*fordeler rest billederne ligeligt på kolonnerne*/
+                restbillede++; /*tæller op fra start antallet af restende billeder*/
+                if (restbillede == 1) { /*hvis der er 1 resterende billede, skal det ligges i kolonne 1*/
+                    document.querySelector(".feedcontainer .column1").innerHTML += "<a href=' eachpic.html?slug=" + onepost.slug + "'><img src='" + onepost.billede.guid + " '></a><br>";
+                } else if (restbillede == 2) { /*hvis der er 2 resterende billeder, skal det ligges i kolonne 1 og 2*/
+                    document.querySelector(".feedcontainer .column2").innerHTML += "<a href=' eachpic.html?slug=" + onepost.slug + "'><img src='" + onepost.billede.guid + " '></a><br>";
+                } else { /*hvis der er 3 resterende billeder, skal det ligges i kolonne 1, 2 og 3*/
+                    document.querySelector(".feedcontainer .column3").innerHTML += "<a href=' eachpic.html?slug=" + onepost.slug + "'><img src='" + onepost.billede.guid + " '></a><br>";
+                }
+
+            }
+            nummer++; /*tæller op fra start antallet af billeder*/
+
+            /*GAMMEL KODE HERUNDER, BRUGES IKKE*/
+            //            let klon = temp.cloneNode(true).content;
+            //            klon.querySelector("img").src = onepost.billede.guid;
+            //            klon.querySelector("a").href = "eachpic.html?slug=" + onepost.slug;
+            //            dest.appendChild(klon);
         });
     }
 
@@ -253,7 +286,6 @@
 
 
     }
-
 </script>
 
 </html>

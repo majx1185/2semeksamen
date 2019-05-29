@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ninna York Forside</title>
+    <meta name="robots" content="noindex, nofollow">
     <style>
         /*        BACKGROUND*/
 
@@ -14,6 +15,13 @@
             top: 0;
             left: 0;
             z-index: -999;
+        }
+
+        #logo img {
+            width: 15%;
+            position: absolute;
+            top: 20px;
+            left: 15vw;
         }
 
         /*        BACKGROUND END*/
@@ -38,12 +46,27 @@
 
         /*        MENU END*/
 
+        /*CONTENT TEXT*/
+        .allcontent {
+            padding-left: 15vw;
+        }
+
+        .headline {
+            padding: 15% 15vw 5vw;
+        }
+
+        .text1 {
+            width: 40%;
+        }
+
+        /*CONTENT TEXT END*/
+
         /*        FEEDGRID*/
         .feedcontainer {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             grid-gap: 1vw;
-            padding: 90vh 13vw 0;
+            padding: 50% 15vw 0;
         }
 
         .feedpic img {
@@ -66,8 +89,8 @@
             <nav>
                 <ul>
                     <li><a href="custom.html">Custom</a></li>
-                    <li><a href="contact.html">Contact</a></li>
                     <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                     <li><a href="showpieces.html">Showpieces</a></li>
                 </ul>
             </nav>
@@ -78,14 +101,21 @@
 
     <div id="backgroundpic">
         <picture>
-            <source media="(min-width: 630px)" srcset="billeder/backgroundpicture.png">
-            <img src="" alt="default">
+            <source media="(min-width: 700px)" srcset="billeder/contactbackground.svg">
+            <img src="billeder/contactmobil.svg" alt="default">
         </picture>
+    </div>
+    <div id="logo">
+        <a href="index.html"><img src="billeder/logoblack.svg" alt="logo"></a>
     </div>
 
 
-    <div class="feedcontainer"></div>
+    <div class="allcontent">
+        <div class="headline"></div>
+        <div class="text1"></div>
+    </div>
 
+    <div class="feedcontainer"></div>
 
     <template>
         <article class="feedpic">
@@ -102,25 +132,19 @@
     document.addEventListener("DOMContentLoaded", start);
 
     function start() {
+        async function getJson() {
+            let url =
+                "http://phin.dk/2semeksamen/wordpress/wp-json/wp/v2/contact/93"
+            let jsonData = await fetch(url);
+            feed = await jsonData.json();
+            visFeed();
+        }
+
+        function visFeed() {
+            document.querySelector(".headline").textContent = feed.title.rendered;
+            document.querySelector(".text1").innerHTML = feed.content.rendered;
+        }
         getJson();
-    }
-
-    async function getJson() {
-        let url =
-            "http://phin.dk/2semeksamen/wordpress/wp-json/wp/v2/feed?per_page=10"
-        let jsonData = await fetch(url);
-        feed = await jsonData.json();
-        visFeed();
-    }
-
-    function visFeed() {
-        let dest = document.querySelector(".feedcontainer");
-        let temp = document.querySelector("template");
-        feed.forEach(onepost => {
-            let klon = temp.cloneNode(true).content;
-            klon.querySelector("img").src = onepost.billede.guid;
-            dest.appendChild(klon);
-        });
     }
 </script>
 

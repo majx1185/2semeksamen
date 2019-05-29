@@ -5,8 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ninna York Forside</title>
+    <meta name="robots" content="noindex, nofollow">
     <style>
-        /*        BACKGROUND*/
+        /*BACKGROUND*/
 
         #backgroundpic img {
             width: 100%;
@@ -16,9 +17,25 @@
             z-index: -999;
         }
 
-        /*        BACKGROUND END*/
+        #bigjewl img {
+            width: 50%;
+            position: absolute;
+            top: 80px;
+            left: 22%;
+            z-index: 10;
+        }
 
-        /*        MENU*/
+        #logo img {
+            width: 35%;
+            position: absolute;
+            top: 40px;
+            left: 30%;
+            z-index: 10;
+        }
+
+        /*BACKGROUND END*/
+
+        /*MENU*/
         .mainmenu .navmenu {
             position: fixed;
             right: 5%;
@@ -36,52 +53,148 @@
             list-style: none;
         }
 
-        /*        MENU END*/
+        #fixednav {
+            position: sticky;
+            top: 0;
+        }
 
-        /*        FEEDGRID*/
+        .burgermenu {
+            margin-right: 30px;
+            margin-top: 17px;
+            z-index: 100;
+        }
+
+        .bar1,
+        .bar2,
+        .bar3 {
+            width: 55px;
+            height: 6px;
+            background-color: black;
+            margin: 9px 0;
+            transition: 0.4s;
+        }
+
+        .change .bar1 {
+            transform: rotate(-45deg) translate(-13px, 9px);
+        }
+
+        .change .bar2 {
+            opacity: 0;
+        }
+
+        .change .bar3 {
+            transform: rotate(45deg) translate(-10px, -9px);
+        }
+
+
+        /*MENU END*/
+
+        /*FEEDGRID*/
         .feedcontainer {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            grid-gap: 1vw;
+            grid-gap: 1.5vw;
             padding: 50% 15vw 0;
         }
 
         .feedcontainer img {
             width: 100%;
-            padding-bottom: 2vh;
+            padding-bottom: 1.5vh;
         }
 
-        /*        FEEDGRID END*/
+        /*FEEDGRID END*/
+
+        /*MEDIA QUERIES*/
+        @media (max-width: 840px) {
+            .feedcontainer {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 699px) {
+            .feedcontainer {
+                padding: 190% 10vw 0;
+            }
+
+            #bigjewl img {
+                width: 110%;
+                top: 240px;
+                left: -10%;
+            }
+
+            #logo img {
+                width: 50%;
+                top: 30px;
+                left: 5%;
+            }
+
+            .hidden {
+                display: none;
+            }
+
+            .burgermenu {
+                position: absolute;
+                right: 2%;
+            }
+
+            .mainmenu .navmenu {
+                background-color: rgba(255, 255, 255, 0.9);
+                top: 10%;
+                position: absolute;
+                right: 10%;
+                font-size: 1.5rem;
+                padding-top: 0;
+                padding-right: 30px;
+                text-align: center;
+                border-radius: 5%;
+            }
+
+        }
+
+        @media (min-width: 700px) {
+            .burgermenu {
+                display: none;
+            }
+        }
+
+        /*MEDIA QUERIES END*/
+
     </style>
 </head>
 
 <body>
-    <header class="mainmenu">
-        <div class="burgermenu">
-            <div class="bar1"></div>
-            <div class="bar2"></div>
-            <div class="bar3"></div>
-        </div>
+    <div id="fixednav">
+        <header class="mainmenu">
+            <div class="burgermenu">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
 
-        <div class="navmenu hidden">
-            <nav>
-                <ul>
-                    <li><a href="custom.html">Custom</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="showpieces.html">Showpieces</a></li>
-                </ul>
-            </nav>
-        </div>
-
-    </header>
-
+            <div class="navmenu hidden">
+                <nav>
+                    <ul>
+                        <li><a href="custom.html">Custom</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="showpieces.html">Showpieces</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+    </div>
 
     <div id="backgroundpic">
         <picture>
-            <source media="(min-width: 630px)" srcset="billeder/backgroundpicture.png">
-            <img src="" alt="default">
+            <source media="(min-width: 700px)" srcset="billeder/backgroundpicture3.svg">
+            <img src="billeder/forsidemobil.svg" alt="default">
         </picture>
+    </div>
+    <div id="logo">
+        <a href="index.html"><img src="billeder/logo.svg" alt="logo"></a>
+    </div>
+    <div id="bigjewl">
+        <img src="billeder/jewlerypiece.png" alt="bigjewl">
     </div>
 
 
@@ -112,6 +225,8 @@
 
     function start() {
         getJson();
+
+        document.querySelector(".burgermenu").addEventListener("click", toggleMenu)
     }
 
     async function getJson() {
@@ -163,6 +278,16 @@
             //            dest.appendChild(klon);
         });
     }
+
+    function toggleMenu() {
+        let erSkjult =
+
+            document.querySelector(".navmenu").classList.toggle("hidden");
+        document.querySelector(".burgermenu").classList.toggle("change");
+
+
+    }
+
 </script>
 
 </html>

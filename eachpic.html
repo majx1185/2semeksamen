@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ninna York Forside</title>
+    <meta name="robots" content="noindex, nofollow">
     <style>
         /*        BACKGROUND*/
 
@@ -43,7 +44,7 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             grid-gap: 1vw;
-            padding: 90vh 13vw 0;
+            padding: 50% 15vw 0;
         }
 
         .feedcontainer img {
@@ -66,8 +67,8 @@
             <nav>
                 <ul>
                     <li><a href="custom.html">Custom</a></li>
-                    <li><a href="contact.html">Contact</a></li>
                     <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                     <li><a href="showpieces.html">Showpieces</a></li>
                 </ul>
             </nav>
@@ -78,17 +79,18 @@
 
     <div id="backgroundpic">
         <picture>
-            <source media="(min-width: 630px)" srcset="billeder/backgroundpicture.png">
-            <img src="" alt="default">
+            <source media="(min-width: 700px)" srcset="billeder/custombackground.svg">
+            <img src="billeder/contactmobil.svg" alt="default">
         </picture>
     </div>
 
 
-    <div class="feedcontainer">
+    <div class="feedcontainer"></div>
+
+    <div class="allcontent">
         <h1 class="headline"></h1>
         <img src="" alt="">
     </div>
-
 
     <template>
         <article class="feedpic">
@@ -112,7 +114,7 @@
 
         async function getJson() {
             let jsonData = await
-            fetch("http://phin.dk/2semeksamen/wordpress/wp-json/wp/v2/feed?per_page=10");
+            fetch("http://phin.dk/2semeksamen/wordpress/wp-json/wp/v2/feed?per_page=100");
             feed = await jsonData.json();
             feed.forEach(obj => {
                 if (obj.slug == slug) {
@@ -127,7 +129,7 @@
             console.log(dest);
 
             document.querySelector(".headline").textContent = onepost.title.rendered;
-            document.querySelector(".feedcontainer img").src = onepost.billede.guid;
+            document.querySelector(".allcontent img").src = onepost.billede.guid;
         }
         getJson();
     }

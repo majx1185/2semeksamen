@@ -1,0 +1,56 @@
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="375" height="6594" viewBox="0 0 375 6594">
+  <defs>
+    <style>
+      .cls-1, .cls-3 {
+        fill: none;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-1 {
+        stroke: #0b0b0b;
+        stroke-width: 41px;
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+
+      .cls-3 {
+        stroke: #000;
+      }
+
+      .cls-4 {
+        fill: #0b0b0b;
+      }
+    </style>
+  </defs>
+  <title>forsidemobil</title>
+  <circle class="cls-1" cx="-264.5" cy="226" r="603.5"/>
+  <rect class="cls-2" x="-1156" y="-195" width="1849" height="267.5"/>
+  <rect class="cls-2" x="-1213.5" y="385" width="1849" height="481"/>
+  <circle class="cls-1" cx="-264.5" cy="226" r="559.5"/>
+  <rect class="cls-2" x="-1188" y="534" width="1849" height="288"/>
+  <circle cx="-264" cy="226.5" r="536"/>
+  <circle class="cls-3" cx="-266" cy="225.5" r="886"/>
+  <rect class="cls-4" x="-298.28" y="1630.76" width="1045" height="10.77" transform="translate(333.04 -11.7) rotate(11.58)"/>
+  <rect class="cls-4" x="-298.28" y="1611.76" width="1045" height="10.77" transform="translate(329.23 -12.09) rotate(11.58)"/>
+  <rect class="cls-4" x="-298.28" y="1590.76" width="1045" height="10.77" transform="translate(325.01 -12.52) rotate(11.58)"/>
+  <rect class="cls-4" x="-298.28" y="1571.76" width="1045" height="10.77" transform="translate(321.2 -12.9) rotate(11.58)"/>
+  <rect class="cls-4" x="-298.28" y="1551.76" width="1045" height="10.77" transform="translate(317.18 -13.31) rotate(11.58)"/>
+  <rect class="cls-4" x="-298.28" y="1531.76" width="1045" height="10.77" transform="translate(313.17 -13.72) rotate(11.58)"/>
+  <rect class="cls-4" x="-123.78" y="2426.41" width="628.03" height="1315.78" transform="matrix(0.99, -0.16, 0.16, 0.99, -485.12, 68.84)"/>
+  <rect class="cls-4" x="-679.28" y="3991.76" width="1045" height="10.77" transform="translate(-805.68 49.91) rotate(-11.58)"/>
+  <rect class="cls-4" x="-679.28" y="4010.76" width="1045" height="10.77" transform="translate(-809.49 50.29) rotate(-11.58)"/>
+  <rect class="cls-4" x="-679.28" y="4031.76" width="1045" height="10.77" transform="translate(-813.71 50.72) rotate(-11.58)"/>
+  <rect class="cls-4" x="-679.28" y="4050.76" width="1045" height="10.77" transform="translate(-817.52 51.11) rotate(-11.58)"/>
+  <rect class="cls-4" x="-679.28" y="4070.76" width="1045" height="10.77" transform="translate(-821.54 51.52) rotate(-11.58)"/>
+  <rect class="cls-4" x="-679.28" y="4090.76" width="1045" height="10.77" transform="translate(-825.55 51.92) rotate(-11.58)"/>
+  <rect class="cls-4" x="342.72" y="4090.76" width="1045" height="10.77" transform="translate(839.97 -90.31) rotate(11.58)"/>
+  <rect class="cls-4" x="342.72" y="4071.76" width="1045" height="10.77" transform="translate(836.16 -90.69) rotate(11.58)"/>
+  <rect class="cls-4" x="342.72" y="4050.76" width="1045" height="10.77" transform="translate(831.94 -91.12) rotate(11.58)"/>
+  <rect class="cls-4" x="342.72" y="4031.76" width="1045" height="10.77" transform="translate(828.13 -91.51) rotate(11.58)"/>
+  <rect class="cls-4" x="342.72" y="4011.76" width="1045" height="10.77" transform="translate(824.11 -91.91) rotate(11.58)"/>
+  <rect class="cls-4" x="342.72" y="3991.76" width="1045" height="10.77" transform="translate(820.1 -92.32) rotate(11.58)"/>
+  <circle class="cls-4" cx="671" cy="5387.5" r="791.5"/>
+  <circle class="cls-4" cx="-133.5" cy="6705" r="409"/>
+</svg>
